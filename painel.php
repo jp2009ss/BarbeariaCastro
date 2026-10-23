@@ -63,6 +63,38 @@ function h($valor)
     );
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $item =  $_POST['item'];
+    $descricao = $_POST['descricao'];
+    $valor = $_POST['valor'];
+
+    require("conexao.php");
+
+    $inserir = "INSERT INTO itens (nomeItem,descricaoItem,valor) VALUES ('$item','$descricao','$valor')";
+
+    if (mysqli_query($conexao, $inserir)) {
+
+        echo "
+        <script>
+
+        alert('Cadastro Realizado com sucesso!');
+        window.location.href = 'painel.php';
+        
+        </script>";
+        exit();
+    } else {
+        echo "
+        <script>
+
+        alert('Erro ao cadastrar:" . mysqli_error($conexao) . "';
+        window.history.back();
+        
+        </script>";
+        exit();
+    }
+}
+
 ?>
 
 
@@ -72,13 +104,13 @@ function h($valor)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel | VerdeViva</title>
+    <title>Painel | BarbeariaCastro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
 <body>
     <nav class="navbar bg-success navbar-dark">
-        <div class="container"><span class="navbar-brand">VerdeViva | Administração</span>
+        <div class="container"><span class="navbar-brand">BarbeariaCastro | Administração</span>
             <form action="logout.php" method="POST"><button class="btn btn-outline-light">Sair</button></form>
         </div>
     </nav>
@@ -110,6 +142,37 @@ function h($valor)
                             <td><?= h($linha['email']) ?></td>
                             <td><?= h($linha['telefone']) ?></td>
                             <td><?= h($linha['assunto']) ?></td>
+                            <td style="min-width:220px;white-space:pre-wrap"><?= h($linha['mensagem']) ?></td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </section><br>
+        <!-- area de adminstração de produtos  -->
+        <section class="container">
+            <h1>Produtos da Barbearia</h1>
+            <p>Olá,
+                <?= $_SESSION['usuario_nome']; ?>.
+            </p>
+        </section>
+
+        <section class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Item</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($linha = mysqli_fetch_assoc($resultado)): ?>
+                        <tr>
+                            <td><?= h($linha['idItem']) ?></td>
+                            <td><?= h($linha['nomeItem']) ?></td>
+                            <td><?= h($linha['descricaoItem']) ?></td>
+                            <td><?= h($linha['valor']) ?></td>
                             <td style="min-width:220px;white-space:pre-wrap"><?= h($linha['mensagem']) ?></td>
                         </tr>
                     <?php endwhile; ?>
