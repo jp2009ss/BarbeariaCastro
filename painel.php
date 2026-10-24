@@ -1,4 +1,3 @@
-
 <?php
 // Inicia ou recupera a sessão do usuário.
 session_start();
@@ -111,6 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <nav class="navbar bg-success navbar-dark">
         <div class="container"><span class="navbar-brand">BarbeariaCastro | Administração</span>
+            <button class="btn btn-outline-light">Itens</button>
             <form action="logout.php" method="POST"><button class="btn btn-outline-light">Sair</button></form>
         </div>
     </nav>
@@ -130,6 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <th scope="col">Id</th>
                         <th scope="col">Nome</th>
                         <th scope="col">E-mail</th>
+                        <th scope="col">Telefone</th>
                         <th scope="col">Assunto</th>
                         <th scope="col">Mensagem</th>
                     </tr>
@@ -143,43 +144,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <td><?= h($linha['telefone']) ?></td>
                             <td><?= h($linha['assunto']) ?></td>
                             <td style="min-width:220px;white-space:pre-wrap"><?= h($linha['mensagem']) ?></td>
+                            <td>
+                                <a href="responder.php?id=<?= h($linha['idContato']) ?>" class="btn btn-primary">Responder</a>
+                                <a href="resolvido.php?id=<?= h($linha['idContato']) ?>" class="btn btn-success">Resolvido</a>
+                            </td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
             </table>
         </section><br>
+
         <!-- area de adminstração de produtos  -->
-        <section class="container">
-            <h1>Produtos da Barbearia</h1>
-            <p>Olá,
-                <?= $_SESSION['usuario_nome']; ?>.
-            </p>
+        <section class="container card shadow-sm p-4 bg-white mx-auto" style="max-width: 600px;">
+            <h1 class="text-center">Cadastrar Produtos</h1>
+            <div>
+                <form method="POST" action="" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Nome:</label>
+                        <input type="text" name="nomeItem" class="form-control" placeholder="Digite o nome do Item..." required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Descrição:</label>
+                        <input type="text" name="descricao" class="form-control" placeholder="Digite a descrição..." required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Valor:</label>
+                        <input type="number" name="valor" class="form-control" placeholder="Digite o valor..." required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Imagem do Item:</label>
+                        <input type="file" name="imagemItem" class="form-control" accept="image/*" required>
+                    </div>
+
+                    <div class="d-flex justify-content-center gap-2 mt-4">
+                        <button type="submit" name="cadastrar" class="btn btn-primary px-4">Cadastrar</button>
+                        <button type="reset" class="btn btn-outline-secondary px-3">Limpar</button>
+                    </div>
+                </form>
+            </div>
         </section>
 
-        <section class="container">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Item</th>
-                        <th scope="col">Descrição</th>
-                        <th scope="col">Valor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($linha = mysqli_fetch_assoc($resultado)): ?>
-                        <tr>
-                            <td><?= h($linha['idItem']) ?></td>
-                            <td><?= h($linha['nomeItem']) ?></td>
-                            <td><?= h($linha['descricaoItem']) ?></td>
-                            <td><?= h($linha['valor']) ?></td>
-                            <td style="min-width:220px;white-space:pre-wrap"><?= h($linha['mensagem']) ?></td>
-                        </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
-        </section>
+
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
+
 </html>

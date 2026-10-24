@@ -1,6 +1,17 @@
 <?php
 
-//Conecta ao banco de dados
+// $host = 'localhost';
+// $user = 'root';
+// $password = '';
+// $database = 'barbeariacastro';
+// $port = '3307';
+
+// $pdo = new PDO(dsn: "mysql:host=$host;port=$port;dbname=$database", username: $user, password: $password);
+
+// var_dump($pdo);
+
+
+// Conecta ao banco de dados
 $conexao = mysqli_connect(
     "localhost",
     "root",
