@@ -14,22 +14,21 @@ require('conexao.php');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <!-- NavBar -->
-    <nav class="navbar navbar-expand-lg bg-black navbar-dark">
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <i class="bi bi-flower1 me-2"></i>Verde Viva</a>
+                <i class="bi bi-flower1 me-2"></i>Babearia Castro</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto">
-                </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#inicio">Início</a>
@@ -46,7 +45,7 @@ require('conexao.php');
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#contatos">Contatos</a>
                     </li>
-                    <li>
+                    <li class="nav-item">
                         <a class="nav-link active" href="login.php">Entrar</a>
                     </li>
                 </ul>
@@ -55,33 +54,30 @@ require('conexao.php');
     </nav>
 
     <main>
-        <!-- Carousel -->
-        <section id="inicio">
+        <!-- Carousel (seção invertida) -->
+        <section id="inicio" class="secao-invertida">
             <div id="carouselExample" class="carousel slide">
                 <div class="carousel-inner">
 
                     <!-- Carousel 01 -->
-                    <div class="carousel-item active
-                    bg-black text-white text-center p-5">
+                    <div class="carousel-item active text-center p-5">
                         <h1>Corte seu cabelo e melhore sua aparencia.</h1>
                         <p class="fs-5">Os melhores cortes para arrumar sua lataria.</p>
-                        <a href="#produtos" class="btn btn-light">Conhecer produtos</a>
+                        <a href="#produtos" class="btn btn-primary">Conhecer produtos</a>
                     </div>
 
                     <!-- Carousel 02 -->
-                    <div class="carousel-item 
-                    bg-black text-white text-center p-5">
+                    <div class="carousel-item text-center p-5">
                         <h1>Semana De Promoção</h1>
                         <p class="fs-5">Ofertas especiais em Cortes e Produtos</p>
-                        <a href="#produtos" class="btn btn-light">Ver Ofertas</a>
+                        <a href="#produtos" class="btn btn-primary">Ver Ofertas</a>
                     </div>
 
                     <!-- Carousel 03 -->
-                    <div class="carousel-item 
-                   bg-black text-white text-center p-5">
+                    <div class="carousel-item text-center p-5">
                         <h1>Tudo oque você procura encontra aqui</h1>
                         <p class="fs-5"></p>
-                        <a href="#categorias" class="btn btn-light">Explorar Categorias</a>
+                        <a href="#categorias" class="btn btn-primary">Explorar Categorias</a>
                     </div>
 
                 </div>
@@ -111,17 +107,17 @@ require('conexao.php');
         <section class="container text-center mt-5 py-5" id="categorias">
             <!-- Titulo -->
             <div>
-                <h2 class="fw-bold ">Nossas Categorias</h2>
-                <p class="text-primary mb-5">Encontre tudo o que precisa para deixar seu espaço mais verde.</p>
+                <h2 class="fw-bold">Nossas Categorias</h2>
+                <p class="mb-5">Encontre tudo oque você precisa para o seu cabelo.</p>
             </div>
             <div class="row mb-5 g-3">
                 <div class="col col-md">
                     <!-- Card 01 -->
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                            <i class="bi bi-flower3 text-primary" style="font-size: 4rem;"></i>
-                            <h5 class="card-title">Plantas</h5>
-                            <p class="card-text">Plantas para ambientes internos e externos.</p>
+                            <i class="bi bi-calendar-week" style="font-size: 4rem;"></i>
+                            <h5 class="card-title">Agenda</h5>
+                            <p class="card-text">Agende seu Corte com antecendência.</p>
                         </div>
                     </div>
                 </div>
@@ -129,9 +125,9 @@ require('conexao.php');
                     <!-- Card 02 -->
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                            <i class="bi bi-basket text-primary" style="font-size: 4rem;"></i>
-                            <h5 class="card-title">Vasos</h5>
-                            <p class="card-text">Vasos decorativos em diferentes tamanhos.</p>
+                            <i class="bi bi-person"style="font-size: 4rem;"></i>
+                            <h5 class="card-title">Cortes</h5>
+                            <p class="card-text">Cortes feitos para trazer sua melhor versão.</p>
                         </div>
                     </div>
                 </div>
@@ -139,9 +135,9 @@ require('conexao.php');
                     <!-- Card 03 -->
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                            <i class="bi bi-tools text-primary" style="font-size: 4rem;"></i>
-                            <h5 class="card-title">Ferramentas</h5>
-                            <p class="card-text">Ferramentas para cuidar do seu jardim.</p>
+                            <i class="bi bi-bag" style="font-size: 4rem;"></i>
+                            <h5 class="card-title">Produtos</h5>
+                            <p class="card-text">Os melhores Produtos para o seu cabelo.</p>
                         </div>
                     </div>
                 </div>
@@ -149,47 +145,44 @@ require('conexao.php');
                     <!-- Card 04 -->
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                            <i class="bi bi-droplet text-primary" style="font-size: 4rem;"></i>
-                            <h5 class="card-title">Acessórios</h5>
-                            <p class="card-text">Produtos para facilitar os cuidados diários.</p>
+                            <i class="bi bi-capsule"style="font-size: 4rem;"></i>
+                            <h5 class="card-title">Tratamentos</h5>
+                            <p class="card-text">Tratamentos capilares para mandar sua calvice embora.</p>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
         </section>
 
-        <!-- Card Produtos -->
-        <section class="container-fluid bg-light pt-1">
+        <!-- Card Produtos (separado por bordas, sem fundo diferente) -->
+        <section class="container-fluid border-top border-bottom pt-1">
             <div class="container text-center mt-5" id="produtos">
                 <!-- Titulo -->
                 <div>
                     <h2 class="mt-5 fw-bold">Produtos em Destaque</h2>
-                    <p class="text-secondary">Conheça alguns dos produtos selecionados pela VerdeViva.</p>
+                    <p class="opacity-75">Conheça alguns dos produtos selecionados pela VerdeViva.</p>
                 </div>
 
                 <div class="row pb-5 py-5 g-3">
-                    <div class="col col-mg ">
+                    <div class="col col-mg">
                         <!-- Card 01 -->
                         <div class="card mx-auto" style="width: 18rem;">
-                            <img src="img/costaAdao.jpg" class="card-img-top" style="height: 220px; object-fit: cover;">
+                            <img src="img/images.jpg" class="card-img-top" alt="Costela de Adão"
+                                style="height: 220px; object-fit: cover;">
                             <div class="card-body">
-                                <span class="badge text-bg-danger">Oferta</span>
+                                <span class="badge">Oferta</span>
                                 <h5 class="card-title">Costela de Adão</h5>
                                 <p class="card-text">Planta ornamental ideal para ambientes internos e decoração.</p>
 
                                 <!-- Preço Antigo -->
-                                <p class="text-secondary text-decoration-line-through mb-0">R$ 99,90</p>
+                                <p class="opacity-75 text-decoration-line-through mb-0">R$ 99,90</p>
 
                                 <!-- Preço atual -->
-                                <h4 class="text-primary">R$ 79,90</h4>
+                                <h4>R$ 79,90</h4>
 
                                 <div>
-                                    <button type="button" class="btn btn-outline-primarybtn-primary w-100" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-outline-primary w-100" data-bs-toggle="modal"
                                         data-bs-target="#detalhesProduto">
-
                                         <i class="bi bi-eye me-1"></i>
                                         Ver detalhes
                                     </button>
@@ -199,8 +192,6 @@ require('conexao.php');
                                         Comprar pelo WhatsApp
                                     </a>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -208,23 +199,22 @@ require('conexao.php');
                     <div class="col col-mg">
                         <!-- Card 02 -->
                         <div class="card mx-auto" style="width: 18rem;">
-                            <img src="img/espada.jpg" class="card-img-top" style="height: 220px; 
-                            object-fit: cover;">
+                            <img src="img/espada.jpg" class="card-img-top" alt="Costela de Adão"
+                                style="height: 220px; object-fit: cover;">
                             <div class="card-body">
-                                <span class="badge text-bg-danger">Oferta</span>
+                                <span class="badge">Oferta</span>
                                 <h5 class="card-title">Costela de Adão</h5>
                                 <p class="card-text">Planta ornamental ideal para ambientes internos e decoração.</p>
 
                                 <!-- Preço Antigo -->
-                                <p class="text-secondary text-decoration-line-through mb-0">R$ 99,90</p>
+                                <p class="opacity-75 text-decoration-line-through mb-0">R$ 99,90</p>
 
                                 <!-- Preço atual -->
-                                <h4 class="text-primary">R$ 79,90</h4>
+                                <h4>R$ 79,90</h4>
 
                                 <div>
-                                    <button type="button" class="btn btn-outline-primarybtn-primary w-100" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-outline-primary w-100" data-bs-toggle="modal"
                                         data-bs-target="#detalhesProduto">
-
                                         <i class="bi bi-eye me-1"></i>
                                         Ver detalhes
                                     </button>
@@ -234,8 +224,6 @@ require('conexao.php');
                                         Comprar pelo WhatsApp
                                     </a>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -243,34 +231,31 @@ require('conexao.php');
                     <div class="col col-mg">
                         <!-- Card 03 -->
                         <div class="card mx-auto" style="width: 18rem;">
-                            <img src="img/kitJardinagem.jpg" class="card-img-top" alt="..."
+                            <img src="img/kitJardinagem.jpg" class="card-img-top" alt="Costela de Adão"
                                 style="height: 220px; object-fit: cover;">
                             <div class="card-body">
-                                <span class="badge text-bg-danger">Oferta</span>
+                                <span class="badge">Oferta</span>
                                 <h5 class="card-title">Costela de Adão</h5>
                                 <p class="card-text">Planta ornamental ideal para ambientes internos e decoração.</p>
 
                                 <!-- Preço Antigo -->
-                                <p class="text-secondary text-decoration-line-through mb-0">R$ 99,90</p>
+                                <p class="opacity-75 text-decoration-line-through mb-0">R$ 99,90</p>
 
                                 <!-- Preço atual -->
-                                <h4 class="text-primary">R$ 79,90</h4>
+                                <h4>R$ 79,90</h4>
 
                                 <div>
-                                    <button type="button" class="btn btn-outline-primarybtn-primary w-100" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-outline-primary w-100" data-bs-toggle="modal"
                                         data-bs-target="#detalhesProduto">
-
                                         <i class="bi bi-eye me-1"></i>
                                         Ver detalhes
                                     </button>
                                     <a href="https://wa.me/5534955884411?text=Olá%20tenho%20interesse%20na%20costela%20de%20Adão."
-                                        class="btn btn-primary w-100 mt-2">
+                                        target="_blank" class="btn btn-primary w-100 mt-2">
                                         <i class="bi bi-whatsapp"></i>
                                         Comprar pelo WhatsApp
                                     </a>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -295,8 +280,7 @@ require('conexao.php');
                             <p><strong>Preço: </strong>R$ 79,90</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-black" data-bs-dismiss="modal">Fechar</button>
-                            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Fechar</button>
                             <a href="https://wa.me/5534955884411?text=Olá%20tenho%20interesse%20na%20costela%20de%20Adão."
                                 target="_blank" class="btn btn-primary mt-2">
                                 <i class="bi bi-whatsapp"></i>
@@ -314,39 +298,33 @@ require('conexao.php');
                 <div class="row text-center g-4">
                     <!-- ENTREGA -->
                     <div class="col-12 col-md-4">
-                        <div class="fs-1 text-primary">
+                        <div class="fs-1">
                             <i class="bi bi-truck"></i>
                         </div>
-                        <h5>
-                            Entrega
-                        </h5>
-                        <p class="text-secondary">
+                        <h5>Entrega</h5>
+                        <p>
                             Consulte disponibilidade e prazo
                             para sua região.
                         </p>
                     </div>
                     <!-- COMPRA SEGURA -->
                     <div class="col-12 col-md-4">
-                        <div class="fs-1 text-primary">
+                        <div class="fs-1">
                             <i class="bi bi-shield-check"></i>
                         </div>
-                        <h5>
-                            Compra Segura
-                        </h5>
-                        <p class="text-secondary">
+                        <h5>Compra Segura</h5>
+                        <p>
                             Atendimento personalizado
                             antes da compra.
                         </p>
                     </div>
                     <!-- SUPORTE -->
                     <div class="col-12 col-md-4">
-                        <div class="fs-1 text-primary">
+                        <div class="fs-1">
                             <i class="bi bi-chat-dots"></i>
                         </div>
-                        <h5>
-                            Suporte
-                        </h5>
-                        <p class="text-secondary">
+                        <h5>Suporte</h5>
+                        <p>
                             Tire suas dúvidas sobre
                             cuidados com as plantas.
                         </p>
@@ -355,8 +333,8 @@ require('conexao.php');
             </div>
         </section>
 
-        <!-- Accordion -->
-        <section class="container-fluid bg-light p-5">
+        <!-- Accordion (seção invertida) -->
+        <section class="container-fluid secao-invertida p-5">
             <div class="container">
                 <div class="text-center mt-5" id="duvidas">
                     <!-- Titulo -->
@@ -413,11 +391,12 @@ require('conexao.php');
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#resposta4">
+                                    data-bs-target="#resposta4" aria-expanded="false" aria-controls="resposta4">
                                     Posso retirar meu produto na loja?
                                 </button>
                             </h2>
-                            <div id="resposta4" class="accordion-collapse collapse" data-bs-parent="#perguntas">
+                            <div id="resposta4" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
                                     Sim. A retirada poderá ser combinada
                                     previamente com nossa equipe.
@@ -426,8 +405,7 @@ require('conexao.php');
                         </div>
                     </div>
                 </div>
-
-
+            </div>
         </section>
 
         <!-- Formulario -->
@@ -436,41 +414,41 @@ require('conexao.php');
                 <!-- Titulo -->
                 <div class="text-center">
                     <h2 class="mt-5 fw-bold">Entre em Contato</h2>
-                    <p class="text-secondary">Envie sua dúvida para nossa equipe.</p>
+                    <p class="opacity-75">Envie sua dúvida para nossa equipe.</p>
                 </div>
 
                 <div class="row justify-content-center tec">
                     <div class="col-12 col-md-6">
                         <form action="cadastroContato.php" method="POST">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Nome</label>
+                                <label for="nome" class="form-label">Nome</label>
                                 <input type="text" name="nome" class="form-control" id="nome"
                                     placeholder="Entre com o seu nome completo" required>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                                <label for="email" class="form-label">Email</label>
                                 <input type="text" name="email" class="form-control" id="email"
                                     placeholder="nome@email.com" required>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Telefone</label>
+                                <label for="telefone" class="form-label">Telefone</label>
                                 <input type="number" name="telefone" class="form-control" id="telefone"
                                     placeholder="(34) 99999-9999" required>
                             </div>
 
-                            <label for="exampleFormControlInput1" class="form-label">Dúvidas</label>
+                            <label for="assunto" class="form-label">Dúvidas</label>
                             <select name="assunto" id="assunto" class="form-select">
                                 <option value="Produto">Dúvida sobre produto</option>
                                 <option value="Entrega">Entrega</option>
                                 <option value="Pagamento">Pagamento</option>
                             </select>
 
-                            <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">Mensagem</label>
+                            <div class="mb-3 mt-3">
+                                <label for="mensagem" class="form-label">Mensagem</label>
                                 <textarea class="form-control" id="mensagem" name="mensagem" rows="3" required></textarea>
                             </div>
 
-                            <button class="btn btn-primary w-100 ">
+                            <button class="btn btn-primary w-100">
                                 <i class="bi bi-send me-2"></i>
                                 Enviar mensagem
                             </button>
@@ -480,7 +458,8 @@ require('conexao.php');
             </div>
         </section>
 
-        <section class="bg-primarybtn-primary text-white text-center py-5">
+        <!-- Chamada final (seção invertida) -->
+        <section class="secao-invertida text-center py-5">
             <div class="container">
                 <h2 class="fw-bold">
                     Fale com a BarbeariaCastro
@@ -489,18 +468,15 @@ require('conexao.php');
                     Faça seu pedido ou acompanhe
                     nossas novidades nas redes sociais.
                 </p>
-                <div class="d-flex
-                       justify-content-center
-                       flex-wrap
-                       gap-2">
+                <div class="d-flex justify-content-center flex-wrap gap-2">
                     <!-- WHATSAPP -->
                     <a href="https://wa.me/5534999999999?text=Olá%20gostaria%20de%20conhecer%20os%20produtos%20da%20VerdeViva"
-                        target="_blank" class="btn btn-light">
+                        target="_blank" class="btn btn-primary">
                         <i class="bi bi-whatsapp"></i>
                         WhatsApp
                     </a>
                     <!-- INSTAGRAM -->
-                    <a href="https://www.instagram.com/nomedoperfil/" target="_blank" class="btn btn-dark">
+                    <a href="https://www.instagram.com/nomedoperfil/" target="_blank" class="btn btn-outline-primary">
                         <i class="bi bi-instagram"></i>
                         Instagram
                     </a>
@@ -510,12 +486,12 @@ require('conexao.php');
     </main>
 
     <!-- Footer - Rodapé -->
-    <footer class="bg-dark text-white pt-4">
+    <footer class="pt-4">
         <div class="container">
             <div class="row">
                 <div class="col col-md">
-                    <h5><i class="bi bi-flower1 me-2"></i>Barbearia Castro</a></h5>
-                    <p class="">Cortes & Produtos</p>
+                    <h5><i class="bi bi-flower1 me-2"></i>Barbearia Castro</h5>
+                    <p>Cortes & Produtos</p>
                 </div>
                 <div class="col col-md text-md-end">
                     <p><strong>Atendimento:</strong> Segunda a sábado</p>
