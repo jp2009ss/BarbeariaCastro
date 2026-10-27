@@ -21,6 +21,7 @@ $erro = isset($_GET["erro"]);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -29,7 +30,7 @@ $erro = isset($_GET["erro"]);
         <div class="card shadow-sm w-100"
             style="max-width: 420px;">
             <div class="card-body p-4">
-                <h2 class="text-success mb-3">
+                <h2 class="text mb-3">
                     Acesso Administrativo
                 </h2>
 
@@ -57,7 +58,7 @@ $erro = isset($_GET["erro"]);
                             <!-- Botão Entrar -->
                             <button
                                 type="submit"
-                                class="btn btn-success w-100">
+                                class="btn btn-primary w-100">
                                 Entrar
                             </button>
                         </form>
