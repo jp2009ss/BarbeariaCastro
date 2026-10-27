@@ -37,7 +37,7 @@ require('conexao.php');
                         <a class="nav-link active" aria-current="page" href="#categorias">Categoria</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#produtos">Produtos</a>
+                        <a class="nav-link active" aria-current="page" href="produtos.html">Produtos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#duvidas">Duvidas</a>
@@ -167,7 +167,7 @@ require('conexao.php');
                     <div class="col col-mg">
                         <!-- Card 01 -->
                         <div class="card mx-auto" style="width: 18rem;">
-                            <img src="img/shared image (1).jpg"
+                            <img src="img/Mídia (1).jpg"
                              class="card-img-top" alt="Bigode"
                                 style="height: 220px; object-fit: cover;">
                             <div class="card-body">
@@ -194,7 +194,7 @@ require('conexao.php');
                     <div class="col col-mg">
                         <!-- Card 03 -->
                         <div class="card mx-auto" style="width: 18rem;">
-                            <img src="img/shared image (3).jpg" class="card-img-top" alt="Bigode"
+                            <img src="img/Mídia.jpg" class="card-img-top" alt="Bigode"
                                 style="height: 220px; object-fit: cover;">
                             <div class="card-body">
                                 <span class="badge">Amostra</span>
