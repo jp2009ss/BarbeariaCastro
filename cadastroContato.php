@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require("conexao.php");
 
     //Prepara o comando SQL
-    $sql = "INSERT INTO contato (nome, email, telefone, assunto, mensagem) VALUES (?,?,?,?,?)";
+    $sql = "INSERT INTO contato (nome, email, telefone, assunto, mensagem, status) VALUES (?,?,?,?,?,0)";
 
     //Prepara o comando
     $stmt = mysqli_prepare($conexao, $sql);
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "
             <script>
                 alert('Mensagem enviada com sucesso!');
-                window.location.href = 'index.html';
+                window.location.href = 'index.php';
             </script>
         ";
     } else {
