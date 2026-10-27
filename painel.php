@@ -109,10 +109,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <nav class="navbar bg-success navbar-dark">
+    <nav class="navbar bg- navbar-dark">
         <div class="container"><span class="navbar-brand">BarbeariaCastro | Administração</span>
-            <button class="btn btn-outline-light">Itens</button>
-            <form action="logout.php" method="POST"><button class="btn btn-outline-light">Sair</button></form>
+            <button class="btn btn-primary">Itens</button>
+            <form action="logout.php" method="POST"><button class="btn btn-primary">Sair</button></form>
         </div>
     </nav>
 
@@ -147,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <td style="min-width:220px;white-space:pre-wrap"><?= h($linha['mensagem']) ?></td>
                             <td>
                                 <a href="responder.php?id=<?= h($linha['idContato']) ?>" class="btn btn-primary">Responder</a>
-                                <a href="resolvido.php?id=<?= h($linha['idContato']) ?>" class="btn btn-success">Resolvido</a>
+                                <a href="resolvido.php?id=<?= h($linha['idContato']) ?>" class="btn btn-primary">Resolvido</a>
                             </td>
                         </tr>
                     <?php endwhile; ?>
@@ -161,22 +161,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div>
                 <form method="POST" action="" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Nome:</label>
+                        <label class="form form-label">Nome:</label>
                         <input type="text" name="nomeItem" class="form-control" placeholder="Digite o nome do Item..." required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Descrição:</label>
+                        <label class="form form-label">Descrição:</label>
                         <input type="text" name="descricao" class="form-control" placeholder="Digite a descrição..." required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Valor:</label>
+                        <label class="form form-label">Valor:</label>
                         <input type="number" name="valor" class="form-control" placeholder="Digite o valor..." required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Imagem do Item:</label>
+                        <label class="form form-label">Imagem do Item:</label>
                         <input type="file" name="imagemItem" class="form-control" accept="image/*" required>
                     </div>
 
