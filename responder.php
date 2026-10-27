@@ -11,7 +11,7 @@ if (!$id) {
 
 // Busca os dados do contato específico para exibir na tela
 $id = mysqli_real_escape_string($conexao, $id);
-$sql = "SELECT * FROM contatos WHERE idContato = '$id'";
+$sql = "SELECT * FROM contato WHERE idContato = '$id'";
 $resultado = mysqli_query($conexao, $sql);
 $contato = mysqli_fetch_assoc($resultado);
 
@@ -23,23 +23,21 @@ if (!$contato) {
 // Lógica para quando o formulário de resposta for enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $resposta = $_POST['mensagem_resposta'];
-    $emailDestino = $contato['email'];
-    $assunto = "Re: " . $contato['assunto'];
 
-    // Exemplo usando a função nativa mail() do PHP (requer servidor de e-mail configurado)
-    // Ou você pode salvar a resposta em uma tabela de respostas no banco de dados.
-    $enviado = mail($emailDestino, $assunto, $resposta, "From: seu-email@dominio.com");
-
-    if ($enviado) {
-        // Opcional: Atualizar o status para 'Respondido'
-        mysqli_query($conexao, "UPDATE contatos SET status = 'Respondido' WHERE idContato = '$id'");
-        
-        header("Location: painel.php?msg=respondido");
+    // Atualiza o status para 1 (ou 'Respondido') indicando que já foi tratado
+    $sqlUp = "UPDATE contato SET status = 1 WHERE idContato = '$id'";
+    
+    if (mysqli_query($conexao, $sqlUp)) {
+        echo "<script>
+                alert('Resposta salva com sucesso!');
+                window.location.href = 'painel.php';
+              </script>";
         exit;
     } else {
-        $erro = "Falha ao enviar o e-mail.";
+        $erro = "Erro ao atualizar: " . mysqli_error($conexao);
     }
 }
+
 ?>
 
 <!DOCTYPE html>

@@ -1,33 +1,45 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+require("conexao.php");
 
-    $item =  $_POST['item'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nomeItem = $_POST['nomeItem'];
     $descricao = $_POST['descricao'];
     $valor = $_POST['valor'];
-    
 
-    require("conexao.php");
-
-    $inserir = "INSERT INTO matricula (item,descricao,valor) VALUES ('$item','$descricao','$valor')";
-
-    if (mysqli_query($conexao, $inserir)) {
-
-        echo "
-        <script>
-
-        alert('Item Cadastrado com sucesso!');
-        window.location.href = 'cadastrarItem.php';
+    // Tratamento do Upload da Imagem
+    $nomeImagem = "";
+    if (isset($_FILES['imagemItem']) && $_FILES['imagemItem']['error'] == 0) {
+        $extensao = pathinfo($_FILES['imagemItem']['name'], PATHINFO_EXTENSION);
+        $nomeImagem = uniqid() . "." . $extensao;
+        $pastaDestino = "img/";
         
-        </script>";
-        exit();
+        // Cria a pasta img/ caso ela não exista
+        if (!is_dir($pastaDestino)) {
+            mkdir($pastaDestino, 0777, true);
+        }
+        
+        move_uploaded_file($_FILES['imagemItem']['tmp_name'], $pastaDestino . $nomeImagem);
+    }
+
+    // Comando SQL para inserir na tabela (certifique-se de que a tabela se chama 'produtos' ou ajuste para o seu caso)
+    $sql = "INSERT INTO itens (nomeItem, descricao, valor, imagem) VALUES ('$nomeItem', '$descricao', '$valor', '$nomeImagem')";
+
+    if (mysqli_query($conexao, $sql)) {
+        echo "
+            <script>
+                alert('Item cadastrado com sucesso!');
+                window.location.href = 'painel.php';
+            </script>
+        ";
+        exit;
     } else {
         echo "
-        <script>
-
-        alert('Erro ao cadastrar:" . mysqli_error($conexao) . "';
-        window.history.back();
-        
-        </script>";
-        exit();
+            <script>
+                alert('Erro ao cadastrar: " . mysqli_error($conexao) . "');
+                window.history.back();
+            </script>
+        ";
+        exit;
     }
 }
+?>

@@ -150,8 +150,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <td><?= h($linha['assunto']) ?></td>
                             <td style="min-width:220px;white-space:pre-wrap"><?= h($linha['mensagem']) ?></td>
                             <td>
-                                <a href="responder.php" class="btn btn-primary">Responder</a>
-                                <a href="resolvido.php" class="btn btn-success">Resolvido</a>
+                                <a href="responder.php?id=<?= h($linha['idContato']) ?>" class="btn btn-primary">Responder</a>
+                                <a href="resolvido.php?id=<?= h($linha['idContato']) ?>" class="btn btn-success">Resolvido</a>
                             </td>
                         </tr>
                     <?php endwhile; ?>
