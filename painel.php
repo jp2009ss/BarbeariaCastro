@@ -114,9 +114,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <nav class="navbar bg-success navbar-dark">
+    <nav class="navbar bg- navbar-dark">
         <div class="container"><span class="navbar-brand">BarbeariaCastro | Administração</span>
+<<<<<<< HEAD
+            <button class="btn btn-primary">Itens</button>
+            <form action="logout.php" method="POST"><button class="btn btn-primary">Sair</button></form>
+=======
             <form action="logout.php" method="POST"><button class="btn btn-outline-light">Sair</button></form>
+>>>>>>> 2b04062c8d4b9a9b53cd9af46f52795174aa8359
         </div>
     </nav>
 
@@ -150,8 +155,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <td><?= h($linha['assunto']) ?></td>
                             <td style="min-width:220px;white-space:pre-wrap"><?= h($linha['mensagem']) ?></td>
                             <td>
+<<<<<<< HEAD
                                 <a href="responder.php?id=<?= h($linha['idContato']) ?>" class="btn btn-primary">Responder</a>
                                 <a href="resolvido.php?id=<?= h($linha['idContato']) ?>" class="btn btn-success">Resolvido</a>
+=======
+<<<<<<< HEAD
+                                <a href="responder.php?id=<?= h($linha['idContato']) ?>" class="btn btn-primary">Responder</a>
+                                <a href="resolvido.php?id=<?= h($linha['idContato']) ?>" class="btn btn-primary">Resolvido</a>
+=======
+                                <a href="responder.php" class="btn btn-primary">Responder</a>
+                                <a href="resolvido.php" class="btn btn-success">Resolvido</a>
+>>>>>>> 2b04062c8d4b9a9b53cd9af46f52795174aa8359
+>>>>>>> 005a10324928a553de3d61c90d704680755018bb
                             </td>
                         </tr>
                     <?php endwhile; ?>
@@ -159,6 +174,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </table>
         </section><br>
 
+<<<<<<< HEAD
+        <!-- area de adminstração de produtos  -->
+        <section class="container card shadow-sm p-4 bg-white mx-auto" style="max-width: 600px;">
+            <h1 class="text-center">Cadastrar Produtos</h1>
+            <div>
+                <form method="POST" action="" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form form-label">Nome:</label>
+                        <input type="text" name="nomeItem" class="form-control" placeholder="Digite o nome do Item..." required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form form-label">Descrição:</label>
+                        <input type="text" name="descricao" class="form-control" placeholder="Digite a descrição..." required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form form-label">Valor:</label>
+                        <input type="number" name="valor" class="form-control" placeholder="Digite o valor..." required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form form-label">Imagem do Item:</label>
+                        <input type="file" name="imagemItem" class="form-control" accept="image/*" required>
+                    </div>
+=======
         <!-- accordion                             -->
         <div class="container accordion" id="accordionPanelsStayOpenExample">
             <div class="accordion-item">
@@ -192,6 +233,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <label class="form-label fw-semibold">Imagem do Item:</label>
                                         <input type="file" name="imagemItem" class="form-control" accept="image/*" required>
                                     </div>
+>>>>>>> 2b04062c8d4b9a9b53cd9af46f52795174aa8359
 
                                     <div class="d-flex justify-content-center gap-2 mt-4">
                                         <button type="submit" name="cadastrar" class="btn btn-primary px-4">Cadastrar</button>
