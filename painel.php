@@ -116,10 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <nav class="navbar bg- navbar-dark">
         <div class="container"><span class="navbar-brand">BarbeariaCastro | Administração</span>
-            <button class="btn btn-primary">Mensagens</button>
-            <button class="btn btn-primary">Produtos</button>
             <form action="logout.php" method="POST"><button class="btn btn-outline-light">Sair</button></form>
-
         </div>
     </nav>
 
@@ -171,59 +168,121 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </table>
         </section><br>
 
-        <!-- accordion                             -->
-        <section class="container">
-            <h1>Produtos</h1>
-            <div class="container accordion" id="accordionPanelsStayOpenExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                            Cadastrar Produtos
-                        </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-                        <div class="accordion-body">
-                            <section class="container card shadow-sm p-4 bg-white mx-auto" style="max-width: 600px;">
-                                <h1 class="text-center">Cadastrar Produtos</h1>
-                                <div>
-                                    <form method="POST" action="" enctype="multipart/form-data">
-                                        <div class="mb-3">
-                                            <label class="form-label fw-semibold">Nome:</label>
-                                            <input type="text" name="nomeItem" class="form-control" placeholder="Digite o nome do Item..." required>
+        <!-- accordion-->
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <section class="container">
+
+                            <div class="container accordion" id="accordionPanelsStayOpenExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                                            <h4>Cadastrar Produtos</h4>
+                                        </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingOne">
+                                        <div class="accordion-body">
+                                            <section class="container card shadow-sm p-4 bg-white mx-auto" style="max-width: 600px;">
+                                                <h1 class="text-center">Cadastrar Produtos</h1>
+                                                <div>
+                                                    <form method="POST" action="" enctype="multipart/form-data">
+                                                        <div class="mb-3">
+                                                            <label class="form-label fw-semibold">Nome:</label>
+                                                            <input type="text" name="nomeItem" class="form-control" placeholder="Digite o nome do Item..." required>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label fw-semibold">Descrição:</label>
+                                                            <input type="text" name="descricao" class="form-control" placeholder="Digite a descrição..." required>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label fw-semibold">Valor:</label>
+                                                            <input type="number" name="valor" class="form-control" placeholder="Digite o valor..." required>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label fw-semibold">Imagem do Item:</label>
+                                                            <input type="file" name="imagemItem" class="form-control" accept="image/*" required>
+                                                        </div>
+
+                                                        <div class="d-flex justify-content-center gap-2 mt-4">
+                                                            <button type="submit" name="cadastrar" class="btn btn-primary px-4">Cadastrar</button>
+                                                            <button type="reset" class="btn btn-outline-secondary px-3">Limpar</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </section>
                                         </div>
-    
-                                        <div class="mb-3">
-                                            <label class="form-label fw-semibold">Descrição:</label>
-                                            <input type="text" name="descricao" class="form-control" placeholder="Digite a descrição..." required>
-                                        </div>
-    
-                                        <div class="mb-3">
-                                            <label class="form-label fw-semibold">Valor:</label>
-                                            <input type="number" name="valor" class="form-control" placeholder="Digite o valor..." required>
-                                        </div>
-    
-                                        <div class="mb-3">
-                                            <label class="form-label fw-semibold">Imagem do Item:</label>
-                                            <input type="file" name="imagemItem" class="form-control" accept="image/*" required>
-                                        </div>
-    
-                                        <div class="d-flex justify-content-center gap-2 mt-4">
-                                            <button type="submit" name="cadastrar" class="btn btn-primary px-4">Cadastrar</button>
-                                            <button type="reset" class="btn btn-outline-secondary px-3">Limpar</button>
-                                        </div>
-                                    </form>
+                                    </div>
                                 </div>
-                            </section>
-                        </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+
         <!-- area de adminstração de produtos  -->
-        <div>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>lista de Produtos</h4>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nome</th>
+                                        <th>Descrição</th>
+                                        <th>Valor</th>
+                                        <th>Imagem</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <?php
+                                $sql = 'SELECT * FROM itens';
+                                $itens = mysqli_query($conexao, $sql);
+                                if (mysqli_num_rows($itens) > 0) {
+                                    foreach ($itens as $item) {
+                                ?>
+                                        <tbody>
+                                            <tr>
+                                                <td><?= $item['idItem'] ?></td>
+                                                <td><?= $item['nomeItem'] ?></td>
+                                                <td><?= $item['descricaoItem'] ?></td>
+                                                <td><?= $item['valor'] ?></td>
+                                                <td>
+                                                    <img src="img/<?= $item['imagemProduto'] ?>" width="60" alt="Imagem do Produto">
+                                                </td>
+                                                <td>
+                                                    <a href="" class="btn btn-secondary btn-sm">Visualizar</a>
+                                                    <a href="" class="btn btn-success btn-sm">Editar</a>
+                                                    <form action="" method="POST" class="d-inline">
+                                                        <button type="submit" name="delete_produto" value="1" class="btn btn-danger btn-sm">Excluir</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                    <?php
+                                    }
+                                } else {
+                                    echo '<h5>Nenhum produto encontrado</h5>';
+                                }
+                                    ?>
+                                        </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
+            </div>
 
-        </div>            
+        </div>
 
 
 

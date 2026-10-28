@@ -8,8 +8,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Tratamento do Upload da Imagem
     $nomeImagem = "";
-    if (isset($_FILES['imagemItem']) && $_FILES['imagemItem']['error'] == 0) {
-        $extensao = pathinfo($_FILES['imagemItem']['name'], PATHINFO_EXTENSION);
+    if (isset($_FILES['imagemProduto']) && $_FILES['imagemProduto']['error'] == 0) {
+        $extensao = pathinfo($_FILES['imagemProduto']['name'], PATHINFO_EXTENSION);
         $nomeImagem = uniqid() . "." . $extensao;
         $pastaDestino = "img/";
         
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Comando SQL para inserir na tabela (certifique-se de que a tabela se chama 'produtos' ou ajuste para o seu caso)
-    $sql = "INSERT INTO itens (nomeItem, descricao, valor, imagem) VALUES ('$nomeItem', '$descricao', '$valor', '$nomeImagem')";
+    $sql = "INSERT INTO itens (nomeItem, descricao, valor, imagemProduto) VALUES ('$nomeItem', '$descricao', '$valor', '$nomeImagem')";
 
     if (mysqli_query($conexao, $sql)) {
         echo "
