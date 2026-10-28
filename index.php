@@ -21,8 +21,8 @@ require('conexao.php');
     <!-- NavBar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <i class="bi bi-suit-club"></i></i>Babearia Castro</a>
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-suit-club"></i> Barbearia Castro</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -31,7 +31,7 @@ require('conexao.php');
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#inicio">Início</a>
+                        <a class="nav-link active" aria-current="page" href="index.html">Início</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#categorias">Categoria</a>
@@ -296,7 +296,7 @@ require('conexao.php');
                             </h2>
                             <div id="flush-collapseThree" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">Entre em contato com a nossa equipe oara consultar as formas
+                                <div class="accordion-body">Entre em contato com a nossa equipe para consultar as formas
                                     de
                                     pagamento disponíveis para seu pedido.</div>
                             </div>
