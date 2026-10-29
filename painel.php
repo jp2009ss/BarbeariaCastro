@@ -1,4 +1,5 @@
 <?php
+
 // Inicia ou recupera a sessão do usuário.
 session_start();
 
@@ -62,6 +63,29 @@ function h($valor)
         'UTF-8'
     );
 }
+// 1. Inicializa as variáveis vazias para evitar o aviso de "Undefined variable"
+$idItem = "";
+$nomeItem = "";
+$descricaoItem = "";
+$valor = "";
+$imagemProduto = "";
+
+// 2. Se o usuário clicou em Editar, busca os dados do banco
+if (isset($_GET['editar'])) {
+    $id = $_GET['editar'];
+    $sqlEdit = "SELECT * FROM itens WHERE idItem = $id";
+    $resultadoEdit = mysqli_query($conexao, $sqlEdit);
+
+    if ($resultadoEdit && mysqli_num_rows($resultadoEdit) > 0) {
+        $produtoEdit = mysqli_fetch_assoc($resultadoEdit);
+        $idItem = $produtoEdit['idItem'];
+        $nomeItem = $produtoEdit['nomeItem'];
+        $descricaoItem = $produtoEdit['descricaoItem'];
+        $valor = $produtoEdit['valor'];
+        $imagemProduto = $produtoEdit['imagemProduto'];
+    }
+}
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -187,30 +211,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <section class="container card shadow-sm p-4 bg-white mx-auto" style="max-width: 600px;">
                                                 <h1 class="text-center">Cadastrar Produtos</h1>
                                                 <div>
-                                                    <form method="POST" action="" enctype="multipart/form-data">
+                                                    <form method="POST" action="salvarProduto.php" enctype="multipart/form-data">
+
+                                                        <!-- Campo oculto para saber se é edição -->
+                                                        <input type="hidden" name="idItem" value="<?php echo $idItem; ?>">
+                                                        <input type="hidden" name="imagemAntiga" value="<?php echo $imagemProduto; ?>">
+
                                                         <div class="mb-3">
                                                             <label class="form-label fw-semibold">Nome:</label>
-                                                            <input type="text" name="nomeItem" class="form-control" placeholder="Digite o nome do Item..." required>
+                                                            <input type="text" name="nomeItem" class="form-control" value="<?php echo $nomeItem; ?>" required>
                                                         </div>
 
                                                         <div class="mb-3">
                                                             <label class="form-label fw-semibold">Descrição:</label>
-                                                            <input type="text" name="descricao" class="form-control" placeholder="Digite a descrição..." required>
+                                                            <input type="text" name="descricaoItem" class="form-control" value="<?php echo $descricaoItem; ?>">
                                                         </div>
 
                                                         <div class="mb-3">
                                                             <label class="form-label fw-semibold">Valor:</label>
-                                                            <input type="number" name="valor" class="form-control" placeholder="Digite o valor..." required>
+                                                            <input type="number" step="0.01" name="valor" class="form-control" value="<?php echo $valor; ?>" required>
                                                         </div>
 
                                                         <div class="mb-3">
                                                             <label class="form-label fw-semibold">Imagem do Item:</label>
-                                                            <input type="file" name="imagemItem" class="form-control" accept="image/*" required>
+                                                            <input type="file" name="imagemProduto" class="form-control" accept="image/*">
+                                                            <?php if (!empty($imagemProduto)): ?>
+                                                                <small class="text-muted">Imagem atual: <?php echo $imagemProduto; ?></small>
+                                                            <?php endif; ?>
                                                         </div>
 
                                                         <div class="d-flex justify-content-center gap-2 mt-4">
-                                                            <button type="submit" name="cadastrar" class="btn btn-primary px-4">Cadastrar</button>
-                                                            <button type="reset" class="btn btn-outline-secondary px-3">Limpar</button>
+                                                            <!-- O texto do botão muda dinamicamente -->
+                                                            <button type="submit" class="btn btn-primary px-4">
+                                                                <?php echo !empty($idItem) ? "Atualizar" : "Cadastrar"; ?>
+                                                            </button>
+                                                            <a href="painel.php" class="btn btn-outline-secondary px-3">Cancelar</a>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -261,8 +296,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     <img src="img/<?= $item['imagemProduto'] ?>" width="60" alt="Imagem do Produto">
                                                 </td>
                                                 <td>
-                                                    <a href="" class="btn btn-secondary btn-sm">Visualizar</a>
-                                                    <a href="" class="btn btn-success btn-sm">Editar</a>
+                                                    <a href="painel.php?editar=<?php echo $item['idItem']; ?>" class="btn btn-success btn-sm">Editar</a>
                                                     <form action="" method="POST" class="d-inline">
                                                         <button type="submit" name="delete_produto" value="1" class="btn btn-danger btn-sm">Excluir</button>
                                                     </form>
@@ -288,6 +322,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script>
+        // Verifica se a URL contém o parâmetro "editar"
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('editar')) {
+            // Usa exatamente o ID do seu accordion atual: "panelsStayOpen-collapseOne"
+            const elementoCollapse = document.getElementById('panelsStayOpen-collapseOne');
+
+            if (elementoCollapse) {
+                // Abre o accordion automaticamente via Bootstrap
+                const bsCollapse = new bootstrap.Collapse(elementoCollapse, {
+                    toggle: true
+                });
+            }
+        }
+    </script>
 </body>
 
 </html>

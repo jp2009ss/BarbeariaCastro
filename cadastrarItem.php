@@ -2,9 +2,10 @@
 require("conexao.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nomeItem = $_POST['nomeItem'];
-    $descricao = $_POST['descricao'];
-    $valor = $_POST['valor'];
+    // Recebe os dados do formulário
+    $nomeItem      = $_POST['nomeItem'];
+    $descricaoItem = $_POST['descricaoItem'];
+    $valor         = $_POST['valor'];
 
     // Tratamento do Upload da Imagem
     $nomeImagem = "";
@@ -18,11 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mkdir($pastaDestino, 0777, true);
         }
         
-        move_uploaded_file($_FILES['imagemItem']['tmp_name'], $pastaDestino . $nomeImagem);
+        move_uploaded_file($_FILES['imagemProduto']['tmp_name'], $pastaDestino . $nomeImagem);
     }
 
-    // Comando SQL para inserir na tabela (certifique-se de que a tabela se chama 'produtos' ou ajuste para o seu caso)
-    $sql = "INSERT INTO itens (nomeItem, descricao, valor, imagemProduto) VALUES ('$nomeItem', '$descricao', '$valor', '$nomeImagem')";
+    // Comando SQL utilizando exatamente os nomes das colunas da tabela 'itens'
+    $sql = "INSERT INTO itens (nomeItem, descricaoItem, valor, imagemProduto) 
+            VALUES ('$nomeItem', '$descricaoItem', '$valor', '$nomeImagem')";
 
     if (mysqli_query($conexao, $sql)) {
         echo "

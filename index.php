@@ -110,47 +110,44 @@ require('conexao.php');
                 <h2 class="fw-bold">Nossas Categorias</h2>
                 <p class="mb-5">Encontre tudo oque você precisa para o seu cabelo.</p>
             </div>
-            <div class="row mb-5 g-3">
-                <div class="col col-md">
-                    <!-- Card 01 -->
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <i class="bi bi-calendar-week" style="font-size: 4rem;"></i>
-                            <h5 class="card-title">Agenda</h5>
-                            <p class="card-text">Agende seu Corte com antecendência.</p>
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                <?php
+    // Faz a consulta para buscar os itens cadastrados no banco
+    $resultadoProdutos = mysqli_query($conexao, "SELECT * FROM produtos");
+    
+    while ($produto = mysqli_fetch_assoc($resultadoProdutos)) {
+    ?>
+                <div class="col">
+                    <div class="card h-100 shadow-sm" style="width: 18rem;">
+                        <!-- Exibe a imagem se ela existir -->
+                        <?php if (!empty($produto['imagem'])) { ?>
+                        <img src="img/<?= htmlspecialchars($produto['imagem']) ?>" class="card-img-top"
+                            alt="Imagem do Produto" style="height: 160px; object-fit: cover;">
+                        <?php } ?>
+
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <?= htmlspecialchars($produto['nomeItem']) ?>
+                            </h5>
+                            <p class="card-text flex-grow-1">
+                                <?= htmlspecialchars($produto['descricao']) ?>
+                            </p>
+                            <p class="card-text fw-bold text-success">R$
+                                <?= number_format($produto['valor'], 2, ',', '.') ?>
+                            </p>
+
+                            <!-- Botões de Manipulação (Editar e Excluir) -->
+                            <div class="d-flex justify-content-between mt-auto">
+                                <a href="editaritem.php?id=<?= $produto['id'] ?? $produto['idContato'] ?>"
+                                    class="btn btn-sm btn-primary">Editar</a>
+                                <a href="excluiritem.php?id=<?= $produto['id'] ?? $produto['idContato'] ?>"
+                                    class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Tem certeza que deseja excluir este item?')">Excluir</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col col-md">
-                    <!-- Card 02 -->
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <i class="bi bi-person"style="font-size: 4rem;"></i>
-                            <h5 class="card-title">Cortes</h5>
-                            <p class="card-text">Cortes feitos para trazer sua melhor versão.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-md">
-                    <!-- Card 03 -->
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <i class="bi bi-bag" style="font-size: 4rem;"></i>
-                            <h5 class="card-title">Produtos</h5>
-                            <p class="card-text">Os melhores Produtos para o seu cabelo.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-md">
-                    <!-- Card 04 -->
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <i class="bi bi-capsule"style="font-size: 4rem;"></i>
-                            <h5 class="card-title">Tratamentos</h5>
-                            <p class="card-text">Tratamentos capilares para mandar sua calvice embora.</p>
-                        </div>
-                    </div>
-                </div>
+                <?php } ?>
             </div>
         </section>
 
