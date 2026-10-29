@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Produtos | Barbearia Castro</title>
-
-  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Seu CSS já existente (cores e estilos base do site) -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- Ajustes só desta página, usando a paleta do site -->
+  <!-- Ajustes só desta página -->
   <style>
     .produto-card {
       background-color: #712f26;
@@ -47,22 +47,40 @@
 </head>
 <body>
 
-  <!-- Menu: ajuste os links para ficar igual ao do index.html -->
-  <nav class="navbar navbar-expand-md" style="background-color:#712f26;">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="index.html" style="color:#d9a59d;">Barbearia Castro</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
-              aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="menu">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html" style="color:#d9a59d;">Início</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="produtos.html" style="color:#d9a59d;">Produtos</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+      <!-- NavBar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-suit-club"></i> Barbearia Castro</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Abrir menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#categorias">Categorias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="produtos.html">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#duvidas">Dúvidas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contatos">Contatos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.php">Entrar</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
   <main class="container py-5">
     <header class="mb-5">
@@ -75,7 +93,9 @@
       <!-- Para usar foto: troque o conteúdo de .produto-img por <img src="img/arquivo.jpg" alt="..."> -->
       <article class="col-12 col-sm-6 col-lg-4">
         <div class="card produto-card">
-          <div class="produto-img">Foto do produto</div>
+          <div class="produto-img">
+            <img src="img/9bf0deb30eb35286e5350528a1beeff2.webp" alt="Pomada Modeladora Fixação Forte" style="height: 300px; object-fit: cover;">
+          </div>
           <div class="card-body d-flex flex-column">
             <h2 class="card-title h5">Pomada Modeladora Fixação Forte</h2>
             <p class="card-text">Fixação o dia todo e acabamento fosco. Sai fácil com água e shampoo.</p>
@@ -89,7 +109,9 @@
 
       <article class="col-12 col-sm-6 col-lg-4">
         <div class="card produto-card">
-          <div class="produto-img">Foto do produto</div>
+          <div class="produto-img">
+            <img src="img/5137385.webp" alt="Óleo para Barba" style="height: 300px; object-fit: cover;">
+          </div>
           <div class="card-body d-flex flex-column">
             <h2 class="card-title h5">Óleo para Barba</h2>
             <p class="card-text">Hidrata os fios, reduz o frizz e deixa a barba macia e com brilho natural.</p>
@@ -103,7 +125,9 @@
 
       <article class="col-12 col-sm-6 col-lg-4">
         <div class="card produto-card">
-          <div class="produto-img">Foto do produto</div>
+          <div class="produto-img">
+            <img src="img/823155---Shampoo-Para-Barba-KingCGillette-Mentol-241ml-4.jpg.webp" alt="Shampoo para Barba" style="height: 300px; object-fit: cover;">
+          </div>
           <div class="card-body d-flex flex-column">
             <h2 class="card-title h5">Shampoo para Barba</h2>
             <p class="card-text">Limpa sem ressecar os fios nem a pele por baixo da barba.</p>
@@ -117,7 +141,9 @@
 
       <article class="col-12 col-sm-6 col-lg-4">
         <div class="card produto-card">
-          <div class="produto-img">Foto do produto</div>
+          <div class="produto-img">
+            <img src="img/51lnYiSNQlL.jpg" alt="Balm Pós-Barba" style="height: 300px; object-fit: cover;">
+          </div>
           <div class="card-body d-flex flex-column">
             <h2 class="card-title h5">Balm Pós-Barba</h2>
             <p class="card-text">Acalma a pele depois do barbear e ajuda a evitar vermelhidão e ardência.</p>
@@ -131,7 +157,9 @@
 
       <article class="col-12 col-sm-6 col-lg-4">
         <div class="card produto-card">
-          <div class="produto-img">Foto do produto</div>
+          <div class="produto-img">
+            <img src="img/pente-de-madeira-wood-ls001-lanossi_jpg.webp" alt="Pente de Madeira" style="height: 300px; object-fit: cover;">
+          </div>
           <div class="card-body d-flex flex-column">
             <h2 class="card-title h5">Pente de Madeira</h2>
             <p class="card-text">Desembaraça e distribui o óleo pela barba sem gerar estática.</p>
@@ -145,7 +173,9 @@
 
       <article class="col-12 col-sm-6 col-lg-4">
         <div class="card produto-card">
-          <div class="produto-img">Foto do produto</div>
+          <div class="produto-img">
+            <img src="img/51Tc1lDuZ-L._AC_UF894,1000_QL80_.jpg" alt="Navalha Profissional" style="height: 300px; object-fit: cover;">
+          </div>
           <div class="card-body d-flex flex-column">
             <h2 class="card-title h5">Navalha Profissional</h2>
             <p class="card-text">Aço inox com cabo firme, para barbear com precisão e segurança.</p>
