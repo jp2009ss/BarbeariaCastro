@@ -232,13 +232,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                             <input type="number" step="0.01" name="valor" class="form-control" value="<?php echo $valor; ?>" required>
                                                         </div>
 
-                                                        <div class="mb-3">
+                                                        <style>
+                                                            .upload-zone {
+                                                                border: 2px dashed #dee2e6;
+                                                                border-radius: 10px;
+                                                                padding: 40px 20px;
+                                                                text-align: center;
+                                                                cursor: pointer;
+                                                                transition: border-color 0.2s, background 0.2s;
+                                                            }
+
+                                                            .upload-zone:hover,
+                                                            .upload-zone.dragover {
+                                                                border-color: #fd4766;
+                                                                background: #fff8f9;
+                                                            }
+
+                                                            .upload-zone input[type="file"] {
+                                                                display: none;
+                                                            }
+                                                        </style>
+                                                        <div class="upload-zone" id="uploadZone" onclick="document.getElementById('hiddenFile').click()"
+                                                            ondragover="event.preventDefault();this.classList.add('dragover')"
+                                                            ondragleave="this.classList.remove('dragover')"
+                                                            ondrop="event.preventDefault();this.classList.remove('dragover')">
+                                                            <input type="file" id="hiddenFile" multiple>
+                                                            <div style="font-size:2.5rem;margin-bottom:12px;">📁</div>
+                                                            <h6 class="fw-bold mb-1">Drop files here or click to upload</h6>
+                                                            <p class="text-muted small mb-3">Support for JPG, PNG, PDF up to 10MB</p>
+                                                            <button type="button" class="btn btn-sm text-white px-4" style="background:#fd4766;"
+                                                                onclick="event.stopPropagation();document.getElementById('hiddenFile').click()">
+                                                                Browse Files
+                                                            </button>
+                                                        </div>
+                                                        <!-- <div class="mb-3">
                                                             <label class="form-label fw-semibold">Imagem do Item:</label>
                                                             <input type="file" name="imagemProduto" class="form-control" accept="image/*">
                                                             <?php if (!empty($imagemProduto)): ?>
                                                                 <small class="text-muted">Imagem atual: <?php echo $imagemProduto; ?></small>
                                                             <?php endif; ?>
-                                                        </div>
+                                                        </div> -->
 
                                                         <div class="d-flex justify-content-center gap-2 mt-4">
                                                             <!-- O texto do botão muda dinamicamente -->
