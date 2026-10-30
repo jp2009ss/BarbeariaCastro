@@ -2,11 +2,10 @@
 session_start();
 require('conexao.php');
 
-// Ajuste o nome da chave de sessão para o mesmo que o seu autenticar.php grava.
-$logado = !empty($_SESSION['usuario']);
+$logado = isset($_SESSION['usuario_id']);
 
 // Busca os itens cadastrados no banco
-$resultadoProdutos = mysqli_query($conexao, "SELECT * FROM produtos");
+$resultadoProdutos = mysqli_query($conexao, "SELECT * FROM itens ORDER BY idItem DESC");
 if (!$resultadoProdutos) {
     die('Erro na consulta: ' . mysqli_error($conexao));
 }
@@ -54,7 +53,7 @@ if (!$resultadoProdutos) {
                     </li>
                     <li class="nav-item">
                         <?php if ($logado) { ?>
-                            <a class="nav-link" href="logout.php">Sair</a>
+                            <a class="nav-link" href="painel.php">Painel</a>
                         <?php } else { ?>
                             <a class="nav-link" href="login.php">Entrar</a>
                         <?php } ?>
@@ -126,14 +125,12 @@ if (!$resultadoProdutos) {
                     <p class="opacity-75">Nenhum item cadastrado ainda.</p>
                 <?php } ?>
 
-                <?php while ($produto = mysqli_fetch_assoc($resultadoProdutos)) {
-                    $idItem = (int) ($produto['id'] ?? $produto['idContato'] ?? 0);
-                ?>
+                <?php while ($produto = mysqli_fetch_assoc($resultadoProdutos)) { ?>
                 <div class="col">
                     <div class="card h-100 shadow-sm">
                         <!-- Exibe a imagem se ela existir -->
-                        <?php if (!empty($produto['imagem'])) { ?>
-                        <img src="img/<?= htmlspecialchars($produto['imagem']) ?>" class="card-img-top"
+                        <?php if (!empty($produto['imagemProduto'])) { ?>
+                        <img src="img/<?= htmlspecialchars($produto['imagemProduto']) ?>" class="card-img-top"
                             alt="<?= htmlspecialchars($produto['nomeItem']) ?>"
                             style="height: 160px; object-fit: cover;">
                         <?php } ?>
@@ -143,22 +140,11 @@ if (!$resultadoProdutos) {
                                 <?= htmlspecialchars($produto['nomeItem']) ?>
                             </h3>
                             <p class="card-text flex-grow-1">
-                                <?= htmlspecialchars($produto['descricao']) ?>
+                                <?= htmlspecialchars($produto['descricaoItem']) ?>
                             </p>
                             <p class="card-text fw-bold text-success">R$
                                 <?= number_format((float) $produto['valor'], 2, ',', '.') ?>
                             </p>
-
-                            <!-- Editar e Excluir: só para quem está logado -->
-                            <?php if ($logado) { ?>
-                            <div class="d-flex justify-content-between mt-auto">
-                                <a href="editaritem.php?id=<?= $idItem ?>"
-                                    class="btn btn-sm btn-primary">Editar</a>
-                                <a href="excluiritem.php?id=<?= $idItem ?>"
-                                    class="btn btn-sm btn-danger"
-                                    onclick="return confirm('Tem certeza que deseja excluir este item?')">Excluir</a>
-                            </div>
-                            <?php } ?>
                         </div>
                     </div>
                 </div>
