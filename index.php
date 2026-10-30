@@ -1,16 +1,23 @@
 <?php
-
+session_start();
 require('conexao.php');
 
-?>
+// Ajuste o nome da chave de sessão para o mesmo que o seu autenticar.php grava.
+$logado = !empty($_SESSION['usuario']);
 
+// Busca os itens cadastrados no banco
+$resultadoProdutos = mysqli_query($conexao, "SELECT * FROM produtos");
+if (!$resultadoProdutos) {
+    die('Erro na consulta: ' . mysqli_error($conexao));
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Babearia Castro</title>
+    <title>Barbearia Castro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -21,32 +28,36 @@ require('conexao.php');
     <!-- NavBar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="index.php">
                 <i class="bi bi-suit-club"></i> Barbearia Castro</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+                aria-label="Abrir menu">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Início</a>
+                        <a class="nav-link active" aria-current="page" href="index.php">Início</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#categorias">Categoria</a>
+                        <a class="nav-link" href="#categorias">Categorias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="produtos.html">Produtos</a>
+                        <a class="nav-link" href="produtos.html">Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#duvidas">Duvidas</a>
+                        <a class="nav-link" href="#duvidas">Dúvidas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#contatos">Contatos</a>
+                        <a class="nav-link" href="#contatos">Contatos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="login.php">Entrar</a>
+                        <?php if ($logado) { ?>
+                            <a class="nav-link" href="logout.php">Sair</a>
+                        <?php } else { ?>
+                            <a class="nav-link" href="login.php">Entrar</a>
+                        <?php } ?>
                     </li>
                 </ul>
             </div>
@@ -61,35 +72,35 @@ require('conexao.php');
 
                     <!-- Carousel 01 -->
                     <div class="carousel-item active text-center p-5">
-                        <h1>Corte seu cabelo e melhore sua aparencia.</h1>
+                        <h1>Corte seu cabelo e melhore sua aparência.</h1>
                         <p class="fs-5">Os melhores cortes para arrumar sua lataria.</p>
-                        <a href="#produtos" class="btn btn-primary">Conhecer produtos</a>
+                        <a href="produtos.html" class="btn btn-primary">Conhecer produtos</a>
                     </div>
 
                     <!-- Carousel 02 -->
                     <div class="carousel-item text-center p-5">
-                        <h1>Semana De Promoção</h1>
-                        <p class="fs-5">Ofertas especiais em Cortes e Produtos</p>
-                        <a href="#produtos" class="btn btn-primary">Ver Ofertas</a>
+                        <h1>Semana de Promoção</h1>
+                        <p class="fs-5">Ofertas especiais em cortes e produtos.</p>
+                        <a href="produtos.html" class="btn btn-primary">Ver ofertas</a>
                     </div>
 
                     <!-- Carousel 03 -->
                     <div class="carousel-item text-center p-5">
-                        <h1>Tudo oque você procura encontra aqui</h1>
-                        <p class="fs-5"></p>
-                        <a href="#categorias" class="btn btn-primary">Explorar Categorias</a>
+                        <h1>Tudo o que você procura está aqui</h1>
+                        <p class="fs-5">Cortes, barba e produtos em um só lugar.</p>
+                        <a href="#categorias" class="btn btn-primary">Explorar categorias</a>
                     </div>
 
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
                     data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
+                    <span class="visually-hidden">Anterior</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
                     data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
+                    <span class="visually-hidden">Próximo</span>
                 </button>
             </div>
         </section>
@@ -103,47 +114,51 @@ require('conexao.php');
             </div>
         </section>
 
-        <!-- Card Categorias -->
+        <!-- Card Categorias (itens do banco) -->
         <section class="container text-center mt-5 py-5" id="categorias">
             <!-- Titulo -->
             <div>
                 <h2 class="fw-bold">Nossas Categorias</h2>
-                <p class="mb-5">Encontre tudo oque você precisa para o seu cabelo.</p>
+                <p class="mb-5">Encontre tudo o que você precisa para o seu cabelo e barba.</p>
             </div>
             <div class="row row-cols-1 row-cols-md-4 g-4">
-                <?php
-    // Faz a consulta para buscar os itens cadastrados no banco
-    $resultadoProdutos = mysqli_query($conexao, "SELECT * FROM produtos");
-    
-    while ($produto = mysqli_fetch_assoc($resultadoProdutos)) {
-    ?>
+                <?php if (mysqli_num_rows($resultadoProdutos) === 0) { ?>
+                    <p class="opacity-75">Nenhum item cadastrado ainda.</p>
+                <?php } ?>
+
+                <?php while ($produto = mysqli_fetch_assoc($resultadoProdutos)) {
+                    $idItem = (int) ($produto['id'] ?? $produto['idContato'] ?? 0);
+                ?>
                 <div class="col">
-                    <div class="card h-100 shadow-sm" style="width: 18rem;">
+                    <div class="card h-100 shadow-sm">
                         <!-- Exibe a imagem se ela existir -->
                         <?php if (!empty($produto['imagem'])) { ?>
                         <img src="img/<?= htmlspecialchars($produto['imagem']) ?>" class="card-img-top"
-                            alt="Imagem do Produto" style="height: 160px; object-fit: cover;">
+                            alt="<?= htmlspecialchars($produto['nomeItem']) ?>"
+                            style="height: 160px; object-fit: cover;">
                         <?php } ?>
 
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">
+                            <h3 class="card-title h5">
                                 <?= htmlspecialchars($produto['nomeItem']) ?>
-                            </h5>
+                            </h3>
                             <p class="card-text flex-grow-1">
                                 <?= htmlspecialchars($produto['descricao']) ?>
                             </p>
                             <p class="card-text fw-bold text-success">R$
-                                <?= number_format($produto['valor'], 2, ',', '.') ?>
+                                <?= number_format((float) $produto['valor'], 2, ',', '.') ?>
                             </p>
 
-                            <!-- Botões de Manipulação (Editar e Excluir) -->
+                            <!-- Editar e Excluir: só para quem está logado -->
+                            <?php if ($logado) { ?>
                             <div class="d-flex justify-content-between mt-auto">
-                                <a href="editaritem.php?id=<?= $produto['id'] ?? $produto['idContato'] ?>"
+                                <a href="editaritem.php?id=<?= $idItem ?>"
                                     class="btn btn-sm btn-primary">Editar</a>
-                                <a href="excluiritem.php?id=<?= $produto['id'] ?? $produto['idContato'] ?>"
+                                <a href="excluiritem.php?id=<?= $idItem ?>"
                                     class="btn btn-sm btn-danger"
                                     onclick="return confirm('Tem certeza que deseja excluir este item?')">Excluir</a>
                             </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -151,7 +166,7 @@ require('conexao.php');
             </div>
         </section>
 
-        <!-- Card Produtos (separado por bordas, sem fundo diferente) -->
+        <!-- Cortes (separado por bordas, sem fundo diferente) -->
         <section class="container-fluid border-top border-bottom pt-1">
             <div class="container text-center mt-5" id="produtos">
                 <!-- Titulo -->
@@ -161,41 +176,35 @@ require('conexao.php');
                 </div>
 
                 <div class="row pb-5 py-5 g-3">
-                    <div class="col col-mg">
+                    <div class="col-12 col-md-4">
                         <!-- Card 01 -->
                         <div class="card mx-auto" style="width: 18rem;">
-                            <img src="img/Mídia (1).jpg"
-                             class="card-img-top" alt="Bigode"
+                            <img src="img/Mídia (1).jpg" class="card-img-top" alt="Amostra de corte 1"
                                 style="height: 220px; object-fit: cover;">
                             <div class="card-body">
                                 <span class="badge">Amostra</span>
-
-
-
                             </div>
                         </div>
                     </div>
 
-                    <div class="col col-mg">
+                    <div class="col-12 col-md-4">
                         <!-- Card 02 -->
                         <div class="card mx-auto" style="width: 18rem;">
-                            <img src="img/shared image (5).jpg" class="card-img-top" alt="Cachorro"
+                            <img src="img/shared image (5).jpg" class="card-img-top" alt="Amostra de corte 2"
                                 style="height: 220px; object-fit: cover;">
                             <div class="card-body">
                                 <span class="badge">Amostra</span>
-
                             </div>
                         </div>
                     </div>
 
-                    <div class="col col-mg">
+                    <div class="col-12 col-md-4">
                         <!-- Card 03 -->
                         <div class="card mx-auto" style="width: 18rem;">
-                            <img src="img/Mídia.jpg" class="card-img-top" alt="Bigode"
+                            <img src="img/Mídia.jpg" class="card-img-top" alt="Amostra de corte 3"
                                 style="height: 220px; object-fit: cover;">
                             <div class="card-body">
                                 <span class="badge">Amostra</span>
-
                             </div>
                         </div>
                     </div>
@@ -213,10 +222,7 @@ require('conexao.php');
                             <i class="bi bi-truck"></i>
                         </div>
                         <h5>Entrega</h5>
-                        <p>
-                            Consulte disponibilidade e prazo
-                            para sua região.
-                        </p>
+                        <p>Consulte disponibilidade e prazo para sua região.</p>
                     </div>
                     <!-- COMPRA SEGURA -->
                     <div class="col-12 col-md-4">
@@ -224,10 +230,7 @@ require('conexao.php');
                             <i class="bi bi-shield-check"></i>
                         </div>
                         <h5>Compra Segura</h5>
-                        <p>
-                            Atendimento personalizado
-                            antes da compra.
-                        </p>
+                        <p>Atendimento personalizado antes da compra.</p>
                     </div>
                     <!-- SUPORTE -->
                     <div class="col-12 col-md-4">
@@ -235,10 +238,7 @@ require('conexao.php');
                             <i class="bi bi-chat-dots"></i>
                         </div>
                         <h5>Suporte</h5>
-                        <p>
-                            Tire suas dúvidas sobre
-                            cuidados para o cabelo.
-                        </p>
+                        <p>Tire suas dúvidas sobre cuidados para o cabelo.</p>
                     </div>
                 </div>
             </div>
@@ -253,65 +253,63 @@ require('conexao.php');
                         <h2 class="mt-5 fw-bold">Perguntas Frequentes</h2>
                     </div>
                     <div class="accordion accordion-flush" id="accordionFlushExample">
-                        <!-- Accordion 01 - Pergunta 01 -->
+                        <!-- Pergunta 01 -->
                         <div class="accordion-item">
-                            <h2 class="accordion-header">
+                            <h3 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#flush-collapseOne" aria-expanded="false"
                                     aria-controls="flush-collapseOne">
                                     Vocês realizam entrega?
                                 </button>
-                            </h2>
+                            </h3>
                             <div id="flush-collapseOne" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">Sim. Consulte nossa equipe pelo WhatsApp para verificar
                                     disponibilidade e valor.</div>
                             </div>
                         </div>
-                        <!-- Accordion 02 - Pergunta 02 -->
+                        <!-- Pergunta 02 -->
                         <div class="accordion-item">
-                            <h2 class="accordion-header">
+                            <h3 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#flush-collapseTwo" aria-expanded="false"
                                     aria-controls="flush-collapseTwo">
-                                    Como escolher um Corte?
+                                    Como escolher um corte?
                                 </button>
-                            </h2>
+                            </h3>
                             <div id="flush-collapseTwo" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">Nosso Profissional pode recomendar excelentes cortes para sua pessoa .</div>
+                                <div class="accordion-body">Nosso profissional pode recomendar excelentes cortes para
+                                    você.</div>
                             </div>
                         </div>
-                        <!-- Accordion 03 - Pergunta 03 -->
+                        <!-- Pergunta 03 -->
                         <div class="accordion-item">
-                            <h2 class="accordion-header">
+                            <h3 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#flush-collapseThree" aria-expanded="false"
                                     aria-controls="flush-collapseThree">
                                     Quais são as formas de pagamento?
                                 </button>
-                            </h2>
+                            </h3>
                             <div id="flush-collapseThree" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">Entre em contato com a nossa equipe para consultar as formas
-                                    de
-                                    pagamento disponíveis para seu pedido.</div>
+                                    de pagamento disponíveis para seu pedido.</div>
                             </div>
                         </div>
-                        <!-- Accordion 04 - Pergunta 04 -->
+                        <!-- Pergunta 04 -->
                         <div class="accordion-item">
-                            <h2 class="accordion-header">
+                            <h3 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#resposta4" aria-expanded="false" aria-controls="resposta4">
                                     Posso retirar meu produto na loja?
                                 </button>
-                            </h2>
+                            </h3>
                             <div id="resposta4" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    Sim. A retirada poderá ser combinada
-                                    previamente com nossa equipe.
-                                </div>
+                                <div class="accordion-body">Sim. A retirada poderá ser combinada previamente com nossa
+                                    equipe.</div>
                             </div>
                         </div>
                     </div>
@@ -338,12 +336,12 @@ require('conexao.php');
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="text" name="email" class="form-control" id="email"
+                                <input type="email" name="email" class="form-control" id="email"
                                     placeholder="nome@email.com" required>
                             </div>
                             <div class="mb-3">
                                 <label for="telefone" class="form-label">Telefone</label>
-                                <input type="number" name="telefone" class="form-control" id="telefone"
+                                <input type="tel" name="telefone" class="form-control" id="telefone"
                                     placeholder="(34) 99999-9999" required>
                             </div>
 
@@ -356,10 +354,11 @@ require('conexao.php');
 
                             <div class="mb-3 mt-3">
                                 <label for="mensagem" class="form-label">Mensagem</label>
-                                <textarea class="form-control" id="mensagem" name="mensagem" rows="3" required></textarea>
+                                <textarea class="form-control" id="mensagem" name="mensagem" rows="3"
+                                    required></textarea>
                             </div>
 
-                            <button class="btn btn-primary w-100">
+                            <button type="submit" class="btn btn-primary w-100">
                                 <i class="bi bi-send me-2"></i>
                                 Enviar mensagem
                             </button>
@@ -372,22 +371,18 @@ require('conexao.php');
         <!-- Chamada final (seção invertida) -->
         <section class="secao-invertida text-center py-5">
             <div class="container">
-                <h2 class="fw-bold">
-                    Fale com a BarbeariaCastro
-                </h2>
-                <p>
-                    Faça seu pedido ou acompanhe
-                    nossas novidades nas redes sociais.
-                </p>
+                <h2 class="fw-bold">Fale com a Barbearia Castro</h2>
+                <p>Faça seu pedido ou acompanhe nossas novidades nas redes sociais.</p>
                 <div class="d-flex justify-content-center flex-wrap gap-2">
-                    <!-- WHATSAPP -->
-                    <a href="https://wa.me/5534999999999?text=Olá%20gostaria%20de%20conhecer%20os%20produtos%20da%20VerdeViva"
-                        target="_blank" class="btn btn-primary">
+                    <!-- WHATSAPP (troque o número 5534999999999 pelo real) -->
+                    <a href="https://wa.me/5534999999999?text=Ol%C3%A1%2C%20gostaria%20de%20conhecer%20os%20produtos%20da%20Barbearia%20Castro"
+                        target="_blank" rel="noopener" class="btn btn-primary">
                         <i class="bi bi-whatsapp"></i>
                         WhatsApp
                     </a>
-                    <!-- INSTAGRAM -->
-                    <a href="https://www.instagram.com/nomedoperfil/" target="_blank" class="btn btn-outline-primary">
+                    <!-- INSTAGRAM (troque "nomedoperfil" pelo perfil real) -->
+                    <a href="https://www.instagram.com/nomedoperfil/" target="_blank" rel="noopener"
+                        class="btn btn-outline-primary">
                         <i class="bi bi-instagram"></i>
                         Instagram
                     </a>
@@ -401,8 +396,8 @@ require('conexao.php');
         <div class="container">
             <div class="row">
                 <div class="col col-md">
-                    <h5> <i class="bi bi-suit-club"></i></i>Barbearia Castro</h5>
-                    <p>Cortes & Produtos</p>
+                    <h5><i class="bi bi-suit-club"></i> Barbearia Castro</h5>
+                    <p>Cortes &amp; Produtos</p>
                 </div>
                 <div class="col col-md text-md-end">
                     <p><strong>Atendimento:</strong> Segunda a sábado</p>
