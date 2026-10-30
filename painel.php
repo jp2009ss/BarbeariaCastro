@@ -208,7 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </h2>
                                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingOne">
                                         <div class="accordion-body">
-                                            <section class="container card shadow-sm p-4 bg-white mx-auto" style="max-width: 600px;">
+                                            <section class="container card shadow-sm p-4 .accordion mx-auto" style="max-width: 600px;">
                                                 <h1 class="text-center">Cadastrar Produtos</h1>
                                                 <div>
                                                     <form method="POST" action="salvarProduto.php" enctype="multipart/form-data">
